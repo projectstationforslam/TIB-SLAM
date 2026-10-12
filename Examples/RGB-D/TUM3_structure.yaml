@@ -1,0 +1,202 @@
+%YAML:1.0
+
+File.version: "1.0"
+Camera.type: "PinHole"
+
+Camera1.fx: 535.4
+Camera1.fy: 539.2
+Camera1.cx: 320.1
+Camera1.cy: 247.6
+Camera1.k1: 0.0
+Camera1.k2: 0.0
+Camera1.p1: 0.0
+Camera1.p2: 0.0
+Camera.width: 640
+Camera.height: 480
+Camera.fps: 30
+Camera.RGB: 1
+
+Stereo.ThDepth: 40.0
+Stereo.b: 0.0747
+RGBD.DepthMapFactor: 5000.0
+
+ORBextractor.nFeatures: 1000
+ORBextractor.scaleFactor: 1.2
+ORBextractor.nLevels: 8
+ORBextractor.iniThFAST: 20
+ORBextractor.minThFAST: 7
+
+Viewer.KeyFrameSize: 0.05
+Viewer.KeyFrameLineWidth: 1.0
+Viewer.GraphLineWidth: 0.9
+Viewer.PointSize: 2.0
+Viewer.CameraSize: 0.08
+Viewer.CameraLineWidth: 3.0
+Viewer.ViewpointX: 0.0
+Viewer.ViewpointY: -0.7
+Viewer.ViewpointZ: -1.8
+Viewer.ViewpointF: 500.0
+
+# Opt-in line, plane and Manhattan frontend.
+Structure.Enable: 1
+Structure.Depth.Min: 0.15
+Structure.Depth.Max: 8.0
+
+Structure.Line.MinLength: 35.0
+Structure.Line.MaxCount: 80
+Structure.Line.MatchCosine: 0.965
+Structure.Line.MatchPixelDistance: 18.0
+Structure.Line.Match3DDistance: 0.60
+Structure.Line.DescriptorDistance: 48
+Structure.Line.Scale: 2
+Structure.Line.Octaves: 2
+
+Structure.Plane.Stride: 2
+Structure.Plane.RansacIterations: 160
+Structure.Plane.MinInliers: 500
+Structure.Plane.MaxCount: 8
+Structure.Plane.DistanceThreshold: 0.04
+Structure.Plane.VoxelLeaf: 0.02
+Structure.Plane.MinInlierRatio: 0.72
+Structure.Plane.MatchCentroidDistance: 1.20
+Structure.Plane.MatchDistance: 0.05
+Structure.Plane.MatchCosine: 0.985
+Structure.Plane.ParallelCosine: 0.9962
+Structure.Plane.PerpendicularCosine: 0.08716
+# Same noise scales and robust gates used by ManhattanSLAM. The angular
+# entries are converted to 1/sigma_rad^2; DistanceInfo is squared.
+Structure.Plane.AngleInfo: 0.5
+Structure.Plane.DistanceInfo: 50.0
+Structure.Plane.ParallelInfo: 0.5
+Structure.Plane.PerpendicularInfo: 0.5
+Structure.Plane.Chi: 100.0
+Structure.Plane.RelationChi: 50.0
+
+Structure.Manhattan.OrthogonalCosine: 0.08716
+Structure.Manhattan.MinConfidence: 0.25
+Structure.Manhattan.MaxRotationDelta: 0.61
+
+# Analytical observability control.
+Structure.Observability.Enable: 1
+Structure.Observability.StructuralLocalBA: 1
+Structure.Observability.DegenerateKeyframes: 1
+Structure.Observability.MinEigenvalue: 0.001
+Structure.Observability.MaxLogCondition: 6.0
+Structure.Observability.MinDirectionalGain: 0.001
+Structure.Observability.WeakDirectionCount: 2
+Structure.Observability.MaxSelectedFactors: 24
+Structure.Observability.MinKeyframeInterval: 5
+
+# Information-subspace budgeted structural scheduler.  Set Enable to 0
+# to disable it; all remaining keys are ignored then.
+Structure.Scheduler.Enable: 1
+Structure.Scheduler.TemporalTransport: 1
+Structure.Scheduler.SoftObservability: 1
+Structure.Scheduler.GreedyLogDet: 1
+Structure.Scheduler.TemporalRetention: 0.70
+Structure.Scheduler.WeakEigenvalueRatio: 0.0001
+Structure.Scheduler.SoftTransition: 0.35
+Structure.Scheduler.MinimumActivation: 0.05
+Structure.Scheduler.LogDetRegularization: 0.000001
+Structure.Scheduler.FactorBudget: 24.0
+
+# Asynchronous observability-guided 3D Gaussian map.
+GaussianMapping.Enable: 1
+# Uses a continuous confidence gate below. Set this to 1 for the
+# hard rejection ablation.
+GaussianMapping.RejectUnrecoveredDegeneracy: 0
+GaussianMapping.ExportOnShutdown: 1
+GaussianMapping.MinFrameInterval: 5
+GaussianMapping.DepthStride: 6
+GaussianMapping.MaxQueueSize: 3
+GaussianMapping.MaxGaussians: 500000
+GaussianMapping.MinSelectedFactors: 1
+GaussianMapping.MinSelectedGain: 0.001
+GaussianMapping.MinTranslation: 0.04
+GaussianMapping.MinRotation: 0.035
+GaussianMapping.MinDepth: 0.15
+GaussianMapping.MaxDepth: 8.0
+GaussianMapping.VoxelSize: 0.015
+GaussianMapping.MinScale: 0.002
+GaussianMapping.MaxScale: 0.05
+GaussianMapping.ScaleMultiplier: 1.25
+GaussianMapping.NormalScaleRatio: 0.25
+GaussianMapping.BaseOpacity: 0.70
+GaussianMapping.ConfidenceGuidance: 1
+GaussianMapping.EigenvalueReference: 0.001
+GaussianMapping.GoodLogCondition: 3.0
+GaussianMapping.ConditionDecay: 2.0
+GaussianMapping.InformationGainSaturation: 0.10
+GaussianMapping.DegeneracyBaseConfidence: 0.10
+GaussianMapping.MinPoseConfidence: 0.15
+GaussianMapping.MinInsertionConfidence: 0.45
+GaussianMapping.MaxStrideMultiplier: 2.5
+GaussianMapping.WeakDirectionInflation: 1.5
+GaussianMapping.MinFusionWeight: 0.05
+GaussianMapping.MaxFusionDistance: 0.025
+GaussianMapping.MinNormalCosine: 0.50
+GaussianMapping.MaxColorDistance: 0.90
+GaussianMapping.FullCovariancePropagation: 1
+GaussianMapping.PoseCovarianceMultiplier: 1.0
+GaussianMapping.DepthNoiseBase: 0.001
+GaussianMapping.DepthNoiseQuadratic: 0.0015
+GaussianMapping.LocalPhotometricOptimization: 1
+GaussianMapping.DirectionalGeometryUpdate: 1
+GaussianMapping.PhotometricHuberDelta: 0.10
+GaussianMapping.PhotometricMinimumWeight: 0.10
+GaussianMapping.PlyPath: "GaussianMap.ply"
+GaussianMapping.TelemetryPath: "GaussianTelemetry.csv"
+GaussianMapping.SummaryPath: "GaussianSummary.json"
+
+# Covariance-gated direct RGB-D pose feedback.
+DirectPose.Enable: 1
+DirectPose.UncertaintyGate: 1
+DirectPose.CommitOnlyWhenDegenerate: 0
+DirectPose.FrameInterval: 4
+DirectPose.PyramidLevels: 2
+DirectPose.IterationsPerLevel: 3
+DirectPose.PixelStride: 8
+DirectPose.MinCorrespondences: 100
+DirectPose.MinDepth: 0.20
+DirectPose.MaxDepth: 6.0
+DirectPose.MaxDepthDifference: 0.12
+DirectPose.MaxNormalDepthDifference: 0.05
+DirectPose.MinImageGradient: 0.008
+DirectPose.PhotometricSigma: 0.05
+DirectPose.GeometricSigma: 0.02
+DirectPose.HuberDelta: 1.5
+DirectPose.MinRelativeReduction: 0.05
+DirectPose.MaxTranslationCorrection: 0.008
+DirectPose.MaxRotationCorrection: 0.012
+DirectPose.MaxMahalanobis: 16.812
+DirectPose.DegradationAwareSubspace: 1
+DirectPose.MinDirectionalGain: 0.08
+DirectPose.DegradationGainPenalty: 0.12
+DirectPose.MaxDirectionalNis: 6.635
+DirectPose.MinSubspaceRank: 1
+DirectPose.RotationVarianceFloor: 0.00000625
+DirectPose.TranslationVarianceFloor: 0.00000225
+DirectPose.MaxIterationTranslation: 0.015
+DirectPose.MaxIterationRotation: 0.020
+DirectPose.TelemetryPath: "DirectPoseTelemetry.csv"
+DirectPose.SummaryPath: "DirectPoseSummary.json"
+
+
+# PatchTST uses a conservative high-confidence gate and falls back to SLAM.
+# Set Enable to 0 for an explicit baseline run.
+Structure.PatchTST.Enable: 0
+Structure.PatchTST.UsePoseInitialization: 0
+Structure.PatchTST.UseTemporalPrior: 0
+Structure.PatchTST.UseFactorWeights: 0
+Structure.PatchTST.CollectTelemetry: 0
+Structure.PatchTST.TelemetryPath: "../../runs/patchtst_cabinet.csv"
+Structure.PatchTST.ModelPath: "../../../PatchTST/PatchTST_self_supervised/checkpoints/slam_patchtst_crossseq.onnx"
+Structure.PatchTST.ContextLength: 60
+Structure.PatchTST.MaxTranslation: 0.35
+Structure.PatchTST.MaxRotation: 0.60
+Structure.PatchTST.MaxVariance: 1.0
+Structure.PatchTST.MinConfidence: 0.05
+Structure.PatchTST.MinDegenerationProbability: 0.80
+# Every learned information multiplier is clamped again in C++.
+Structure.PatchTST.MinFactorWeight: 0.20
+Structure.PatchTST.MaxFactorWeight: 2.0

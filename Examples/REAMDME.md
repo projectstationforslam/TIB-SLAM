@@ -1,0 +1,1 @@
+This repository contains examples for running TIB-SLAM with the most common SLAM datasets using the new calibration format files.
